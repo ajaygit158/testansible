@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
   apt-get install -y gcc python-dev libkrb5-dev && \
   apt-get install python3-pip -y && \
-  apt-get install curl && \
+  apt-get install curl -y && \
   curl -sL https://aka.ms/InstallAzureCLIDeb | bash && \
   pip3 install --upgrade pip && \
   pip3 install --upgrade virtualenv && \
