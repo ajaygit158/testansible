@@ -7,8 +7,8 @@ ENV AzureWebJobsScriptRoot=/home/site/wwwroot \
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-COPY requirements.txt /
-RUN pip install -r requirements.txt
+COPY requirements.txt /home/
+RUN pip install -r /home/requirements.txt
 
 RUN apt-get update && \
   apt-get install -y gcc python-dev libkrb5-dev && \
