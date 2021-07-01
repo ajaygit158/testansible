@@ -1,18 +1,22 @@
-FROM ubuntu:20.04
+FROM mcr.microsoft.com/azure-functions/python:3.0-python3.8
+
+ENV AzureWebJobsScriptRoot=/home/site/wwwroot \
+    AzureFunctionsJobHost__Logging__Console__IsEnabled=true
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+COPY requirements.txt /
+RUN pip install -r /requirements.txt
+
 RUN apt-get update && \
   apt-get install -y gcc python-dev libkrb5-dev && \
-  apt-get install python3-pip -y && \
   apt-get install curl -y && \
   curl -sL https://aka.ms/InstallAzureCLIDeb | bash && \
-  pip3 install --upgrade pip && \
-  pip3 install --upgrade virtualenv && \
-  pip3 install pywinrm[kerberos] && \
-  apt install krb5-user -y && \ 
-  pip3 install pywinrm && \
-  pip3 install ansible && \
+  pip install pywinrm[kerberos] && \
+  apt install krb5-user -y && \
+  pip install pywinrm && \
+  pip install ansible && \
   ansible-galaxy collection install azure.azcollection && \
-  pip install -r /root/.ansible/collections/ansible_collections/azure/azcollection/requirements-azure.txt
-  
+  pip install -r /home/.ansible/collections/ansible_collections/azure/azcollection/requirements-azure.txt
+
+ COPY . /home/site/wwwroot
