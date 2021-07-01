@@ -8,7 +8,7 @@ ENV AzureWebJobsScriptRoot=/home/site/wwwroot \
 ENV DEBIAN_FRONTEND=noninteractive
 
 COPY requirements.txt /
-RUN pip install -r $(System.DefaultWorkingDirectory)/_ajaygit158_testansible/requirements.txt
+RUN pip install -r requirements.txt
 
 RUN apt-get update && \
   apt-get install -y gcc python-dev libkrb5-dev && \
