@@ -1,0 +1,22 @@
+---
+- hosts: localhost
+  tasks:
+  - name: Install OpenJDK
+    become: true
+    apt:
+      name: openjdk-11-jre-headless
+      state: present
+
+  - name: download tomcat server packages
+    get_url:
+      url: https://apachemirror.wuchna.com/tomcat/tomcat-9/v9.0.48/bin/apache-tomcat-9.0.48.tar.gz
+      dest: /usr/local
+
+  - name: extract tomcat packages
+    unarchive:
+      src: /usr/local/apache-tomcat-9.0.48.tar.gz
+      dest: /usr/local
+      remote_src: yes
+
+  - name: start tomcat services
+    shell: nohup /usr/local/apache-tomcat-9.0.48/bin/startup.sh
