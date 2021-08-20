@@ -1,8 +1,5 @@
-libyui-qt-pkg7
-sapconf
-saptune
-glibc
-systemd
-tuned
-ntp
-numad
+socat
+corosync
+resource-agents
+fence-agents
+cloud-netconfig-azure
