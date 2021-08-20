@@ -1,0 +1,8 @@
+libyui-qt-pkg7
+sapconf
+saptune
+glibc
+systemd
+tuned
+ntp
+numad
